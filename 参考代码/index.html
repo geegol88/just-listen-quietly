@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自然音乐播放器</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 背景装饰元素 -->
+    <div class="bamboo-left">
+        <div class="bamboo-node node-1"></div>
+        <div class="bamboo-node node-2"></div>
+        <div class="bamboo-node node-3"></div>
+        <div class="bamboo-node node-4"></div>
+    </div>
+    
+    <div class="bamboo-right">
+        <div class="bamboo-node node-1"></div>
+        <div class="bamboo-node node-2"></div>
+        <div class="bamboo-node node-3"></div>
+        <div class="bamboo-node node-4"></div>
+    </div>
+
+    <!-- 主内容容器 -->
+    <div class="container" id="main-page" style="display: flex;">
+        <!-- 顶部播放按钮和标语 -->
+        <div class="header">
+            <button class="play-button" aria-label="播放音乐"></button>
+            <span class="slogan">just-listen-quietly</span>
+        </div>
+
+        <!-- 注册和登录按钮 -->
+        <div class="buttons" id="auth-buttons">
+            <button class="action-button register-btn" id="register-button">注册</button>
+            <button class="action-button login-btn" id="login-button">登录</button>
+        </div>
+    </div>
+    
+    <!-- 播放列表弹窗 -->
+    <div id="playlist-modal" class="modal">
+        <div class="modal-content">
+            <span class="close playlist-close">&times;</span>
+            <h2>播放列表</h2>
+            <ul id="playlist">
+                <!-- 播放列表项将通过JavaScript动态生成 -->
+            </ul>
+        </div>
+    </div>
+    
+    <!-- 注册页面 -->
+    <div id="register-page">
+        <form class="auth-form" id="register-form">
+            <h2>用户注册</h2>
+            <div class="form-group">
+                <label for="username">用户名</label>
+                <input type="text" id="username" placeholder="请输入用户名" required>
+            </div>
+            <div class="form-group">
+                <label for="email">邮箱</label>
+                <input type="email" id="email" placeholder="请输入邮箱地址" required>
+            </div>
+            <div class="form-group verification-group">
+                <label for="verification-code">验证码</label>
+                <div class="verification-input">
+                    <input type="text" id="verification-code" placeholder="请输入验证码" required>
+                    <button type="button" id="send-verification" class="send-code-btn">发送验证码</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="reg-password">密码</label>
+                <input type="password" id="reg-password" placeholder="请输入密码" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">确认密码</label>
+                <input type="password" id="confirm-password" placeholder="请再次输入密码" required>
+            </div>
+            <button type="submit" class="submit-btn">注册</button>
+            <div class="switch-form">
+                已有账户? <a href="#" id="switch-to-login">立即登录</a>
+            </div>
+        </form>
+        <button class="back-btn" id="back-button-register">返回首页</button>
+    </div>
+    
+    <!-- 登录页面 -->
+    <div id="login-page">
+        <form class="auth-form" id="login-form">
+            <h2>用户登录</h2>
+            <div class="form-group">
+                <label for="login-email">邮箱</label>
+                <input type="email" id="login-email" placeholder="请输入邮箱地址" required>
+            </div>
+            <div class="form-group">
+                <label for="login-password">密码</label>
+                <input type="password" id="login-password" placeholder="请输入密码" required>
+            </div>
+            <button type="submit" class="submit-btn">登录</button>
+            <div class="switch-form">
+                还没有账户? <a href="#" id="switch-to-register">立即注册</a>
+                <span class="separator">|</span>
+                <a href="#" id="reset-password">重置密码</a>
+            </div>
+        </form>
+        <button class="back-btn" id="back-button-login">返回首页</button>
+    </div>
+    
+    <!-- 重置密码模态窗口 -->
+    <div id="reset-password-modal" class="modal">
+        <div class="modal-content">
+            <span class="close reset-close">&times;</span>
+            <h2>重置密码</h2>
+            <div class="form-group">
+                <label for="reset-email">邮箱</label>
+                <input type="email" id="reset-email" placeholder="请输入注册时使用的邮箱地址">
+            </div>
+            <div class="reset-password-note">
+                <p>请使用注册邮箱接收重置密码的链接</p>
+            </div>
+            <button class="submit-btn" id="reset-password-confirm">确认</button>
+        </div>
+    </div>
+
+    <!-- 音频元素 -->
+    <audio id="audio-player" preload="auto">
+        <source src="" type="audio/mpeg">
+    </audio>
+    <script src="script.js"></script>
+</body>
+</html>
