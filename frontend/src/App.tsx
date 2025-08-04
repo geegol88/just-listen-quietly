@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import './App.css';
+import RegisterModal from './RegisterModal';
+import LoginModal from './LoginModal';
 
 // 音乐列表数据
 const musicList = [
@@ -87,6 +89,27 @@ function App() {
     setIsPlaying(true); // 自动播放下一首
   };
 
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
+  const openRegisterModal = () => {
+    setIsRegisterModalOpen(true);
+    setIsLoginModalOpen(false);
+  };
+
+  const closeRegisterModal = () => {
+    setIsRegisterModalOpen(false);
+  };
+
+  const openLoginModal = () => {
+    setIsLoginModalOpen(true);
+    setIsRegisterModalOpen(false);
+  };
+
+  const closeLoginModal = () => {
+    setIsLoginModalOpen(false);
+  };
+
   return (
     <div className="app-container">
       <div className="content-center">
@@ -99,8 +122,8 @@ function App() {
           just-listen-quietly
         </div>
         <div className="buttons">
-          <button className="register-button">注册</button>
-          <button className="login-button">登录</button>
+          <button className="register-button" onClick={openRegisterModal}>注册</button>
+          <button className="login-button" onClick={openLoginModal}>登录</button>
         </div>
       </div>
 
@@ -125,6 +148,20 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* 注册弹窗 */}
+      <RegisterModal 
+        isOpen={isRegisterModalOpen} 
+        onClose={closeRegisterModal} 
+        onSwitchToLogin={openLoginModal}
+      />
+
+      {/* 登录弹窗 */}
+      <LoginModal 
+        isOpen={isLoginModalOpen} 
+        onClose={closeLoginModal} 
+        onSwitchToRegister={openRegisterModal}
+      />
 
       {/* 隐藏的audio元素 */}
       <audio 
