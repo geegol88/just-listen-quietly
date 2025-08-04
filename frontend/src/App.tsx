@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import './App.css';
 import RegisterModal from './RegisterModal';
 import LoginModal from './LoginModal';
+import ResetPasswordModal from './ResetPasswordModal';
 
 // 音乐列表数据
 const musicList = [
@@ -91,10 +92,12 @@ function App() {
 
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isResetPasswordModalOpen, setIsResetPasswordModalOpen] = useState(false);
 
   const openRegisterModal = () => {
     setIsRegisterModalOpen(true);
     setIsLoginModalOpen(false);
+    setIsResetPasswordModalOpen(false);
   };
 
   const closeRegisterModal = () => {
@@ -104,9 +107,24 @@ function App() {
   const openLoginModal = () => {
     setIsLoginModalOpen(true);
     setIsRegisterModalOpen(false);
+    setIsResetPasswordModalOpen(false);
   };
 
   const closeLoginModal = () => {
+    setIsLoginModalOpen(false);
+  };
+
+  const openResetPasswordModal = () => {
+    setIsResetPasswordModalOpen(true);
+    setIsLoginModalOpen(false); // 关闭登录弹窗
+  };
+
+  const closeResetPasswordModal = () => {
+    setIsResetPasswordModalOpen(false);
+  };
+
+  const returnToHomeFromResetPassword = () => {
+    setIsResetPasswordModalOpen(false);
     setIsLoginModalOpen(false);
   };
 
@@ -161,6 +179,14 @@ function App() {
         isOpen={isLoginModalOpen} 
         onClose={closeLoginModal} 
         onSwitchToRegister={openRegisterModal}
+        onSwitchToResetPassword={openResetPasswordModal}
+      />
+
+      {/* 重置密码弹窗 */}
+      <ResetPasswordModal 
+        isOpen={isResetPasswordModalOpen} 
+        onClose={closeResetPasswordModal}
+        onReturnToHome={returnToHomeFromResetPassword}
       />
 
       {/* 隐藏的audio元素 */}

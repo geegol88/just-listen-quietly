@@ -5,9 +5,10 @@ interface LoginModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSwitchToRegister: () => void;
+  onSwitchToResetPassword: () => void;
 }
 
-const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onSwitchToRegister }) => {
+const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onSwitchToRegister, onSwitchToResetPassword }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [usernameError, setUsernameError] = useState('');
@@ -111,7 +112,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onSwitchToRegi
             登录
           </button>
         </form>
-        <p>还没有账户? <a href="#" onClick={(e) => { e.preventDefault(); onSwitchToRegister(); }}>立即注册</a> | <a href="#" onClick={(e) => { e.preventDefault(); onClose(); }}>重置密码</a> | <a href="#" onClick={(e) => { e.preventDefault(); onClose(); }}>返回主页</a></p>
+        <p>还没有账户? <a href="#" onClick={(e) => { e.preventDefault(); onSwitchToRegister(); }}>立即注册</a> | <a href="#" onClick={(e) => { e.preventDefault(); onSwitchToResetPassword(); }}>重置密码</a> | <a href="#" onClick={(e) => { e.preventDefault(); onClose(); }}>返回主页</a></p>
       </div>
     </div>
   );
